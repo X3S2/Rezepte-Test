@@ -1,386 +1,768 @@
-// Globale Variablen für die Zählerlet ingredientCount = 0, stepCount = 0, tipCount = 0;let ingredientCount = 0, stepCount = 0, tipCount = 0;// Recipe storage and management functions
+let ingredientCount = 0, stepCount = 0, tipCount = 0;// Globale Variablen für die Zählerlet ingredientCount = 0, stepCount = 0, tipCount = 0;let ingredientCount = 0, stepCount = 0, tipCount = 0;// Recipe storage and management functions
 
-let ingredientCount = 0;
 
-let stepCount = 0;
 
-let tipCount = 0;
+// Funktion für ein neues Rezeptlet ingredientCount = 0;
 
-// Rezeptverwaltungsfunktionenfunction saveRecipe() {
+function newRecipe() {
 
-// Funktion für ein neues Rezept
+    if (document.getElementById("recipeName").value !== "") {let stepCount = 0;
 
-function newRecipe() {function newRecipe() {
+        if (!confirm("Möchten Sie wirklich ein neues Rezept erstellen? Nicht gespeicherte Änderungen gehen verloren.")) {
 
-    if (document.getElementById("recipeName").value !== "") {
+            return;let tipCount = 0;
 
-        if (!confirm("Möchten Sie wirklich ein neues Rezept erstellen? Nicht gespeicherte Änderungen gehen verloren.")) {  if (document.getElementById("recipeName").value !== "") {// Rezeptverwaltungsfunktionen  const recipeName = document.getElementById("recipeName").value;
+        }
 
-            return;
+    }// Rezeptverwaltungsfunktionenfunction saveRecipe() {
 
-        }    if (!confirm("Möchten Sie wirklich ein neues Rezept erstellen? Nicht gespeicherte Änderungen gehen verloren.")) {
+    
 
-    }
+    // Formular zurücksetzen// Funktion für ein neues Rezept
 
-          return;function saveRecipe() {  if (!recipeName) {
+    document.getElementById("recipeName").value = "";
 
-    // Formular zurücksetzen
+    document.getElementById("difficulty").value = "3";function newRecipe() {function newRecipe() {
 
-    document.getElementById("recipeName").value = "";    }
+    document.getElementById("prepTime").value = "";
 
-    document.getElementById("difficulty").value = "3";
+    document.getElementById("cookTime").value = "";    if (document.getElementById("recipeName").value !== "") {
 
-    document.getElementById("prepTime").value = "";  }  const recipeName = document.getElementById("recipeName").value;    alert("Bitte geben Sie einen Namen für das Rezept ein.");
+    document.getElementById("previewImage").src = "assets/placeholder.png";
+
+            if (!confirm("Möchten Sie wirklich ein neues Rezept erstellen? Nicht gespeicherte Änderungen gehen verloren.")) {  if (document.getElementById("recipeName").value !== "") {// Rezeptverwaltungsfunktionen  const recipeName = document.getElementById("recipeName").value;
+
+    // Zutaten, Schritte und Tipps löschen
+
+    document.getElementById("ingredients").innerHTML = "";            return;
+
+    document.getElementById("steps").innerHTML = "";
+
+    document.getElementById("tips").innerHTML = "";        }    if (!confirm("Möchten Sie wirklich ein neues Rezept erstellen? Nicht gespeicherte Änderungen gehen verloren.")) {
+
+    
+
+    // Zähler zurücksetzen    }
+
+    ingredientCount = 0;
+
+    stepCount = 0;          return;function saveRecipe() {  if (!recipeName) {
+
+    tipCount = 0;
+
+        // Formular zurücksetzen
+
+    // Standardelemente hinzufügen
+
+    addIngredient();    document.getElementById("recipeName").value = "";    }
+
+    addStep();
+
+        document.getElementById("difficulty").value = "3";
+
+    // Vorschau aktualisieren
+
+    updatePreview();    document.getElementById("prepTime").value = "";  }  const recipeName = document.getElementById("recipeName").value;    alert("Bitte geben Sie einen Namen für das Rezept ein.");
+
+}
 
     document.getElementById("cookTime").value = "";
 
-    document.getElementById("previewImage").src = "assets/placeholder.png";  
-
-    
-
-    // Zutaten, Schritte und Tipps löschen  // Formular zurücksetzen  if (!recipeName) {    return;
-
-    document.getElementById("ingredients").innerHTML = "";
-
-    document.getElementById("steps").innerHTML = "";  document.getElementById("recipeName").value = "";
-
-    document.getElementById("tips").innerHTML = "";
-
-      document.getElementById("difficulty").value = "3";    alert("Bitte geben Sie einen Namen für das Rezept ein.");  }
-
-    // Zähler zurücksetzen
-
-    ingredientCount = 0;  document.getElementById("prepTime").value = "";
-
-    stepCount = 0;
-
-    tipCount = 0;  document.getElementById("cookTime").value = "";    return;
-
-    
-
-    // Standardelemente hinzufügen  document.getElementById("previewImage").src = "assets/placeholder.png";
-
-    addIngredient();
-
-    addStep();    }  const recipeId = Date.now().toString(); // Eindeutige ID für das Rezept
-
-    
-
-    // Vorschau aktualisieren  // Zutaten, Schritte und Tipps löschen
-
-    updatePreview();
-
-}  document.getElementById("ingredients").innerHTML = "";  const recipeData = {
-
-
-
-// Funktion zum Hinzufügen einer Zutat  document.getElementById("steps").innerHTML = "";
-
 function addIngredient() {
 
-    ingredientCount++;  document.getElementById("tips").innerHTML = "";  const recipeId = Date.now().toString(); // Eindeutige ID für das Rezept    id: recipeId,
+    ingredientCount++;    document.getElementById("previewImage").src = "assets/placeholder.png";  
 
     const div = document.getElementById("ingredients");
 
-    const row = document.createElement("div");  
+    const row = document.createElement("div");    
 
     row.className = "flex gap-2 mb-2";
 
-      // Zähler zurücksetzen  const recipeData = {    name: recipeName,
+    // Mengenangabe    // Zutaten, Schritte und Tipps löschen  // Formular zurücksetzen  if (!recipeName) {    return;
 
-    // Mengenangabe
+    const menge = document.createElement("input");
 
-    const menge = document.createElement("input");  ingredientCount = 0;
+    menge.type = "number";    document.getElementById("ingredients").innerHTML = "";
 
-    menge.type = "number";
+    menge.placeholder = "Menge";
 
-    menge.placeholder = "Menge";  stepCount = 0;    id: recipeId,    difficulty: document.getElementById("difficulty").value,
+    menge.className = "p-2 border rounded-lg";    document.getElementById("steps").innerHTML = "";  document.getElementById("recipeName").value = "";
 
-    menge.className = "p-2 border rounded-lg";
+    menge.style.width = "95px";
 
-    menge.style.width = "95px";  tipCount = 0;
-
-    menge.oninput = updatePreview;
-
-          name: recipeName,    prepTime: document.getElementById("prepTime").value,
+    menge.oninput = updatePreview;    document.getElementById("tips").innerHTML = "";
 
     // Mengeneinheit
 
-    const einheit = document.createElement("select");  // Vorschau aktualisieren
+    const einheit = document.createElement("select");      document.getElementById("difficulty").value = "3";    alert("Bitte geben Sie einen Namen für das Rezept ein.");  }
 
     einheit.className = "p-2 border rounded-lg w-24";
 
-    ["EL","TL","Stück","L","ml","g","kg","Prise","Päckchen","Dose","Bund","Scheibe","Tasse"].forEach(e => {  updatePreview();    difficulty: document.getElementById("difficulty").value,    cookTime: document.getElementById("cookTime").value,
+    ["EL","TL","Stück","L","ml","g","kg","Prise","Päckchen","Dose","Bund","Scheibe","Tasse"].forEach(e => {    // Zähler zurücksetzen
 
         const opt = document.createElement("option");
 
-        opt.value = e;}
+        opt.value = e;    ingredientCount = 0;  document.getElementById("prepTime").value = "";
 
         opt.text = e;
 
-        einheit.appendChild(opt);    prepTime: document.getElementById("prepTime").value,    ingredients: [],
+        einheit.appendChild(opt);    stepCount = 0;
 
     });
 
-    einheit.onchange = updatePreview;function saveRecipe() {
+    einheit.onchange = updatePreview;    tipCount = 0;  document.getElementById("cookTime").value = "";    return;
 
-    
+    // Zutat
 
-    // Zutat  const recipeName = document.getElementById("recipeName").value;    cookTime: document.getElementById("cookTime").value,    steps: [],
+    const zutat = document.createElement("input");    
 
-    const zutat = document.createElement("input");
+    zutat.type = "text";
 
-    zutat.type = "text";  if (!recipeName) {
+    zutat.placeholder = `Zutat ${ingredientCount}`;    // Standardelemente hinzufügen  document.getElementById("previewImage").src = "assets/placeholder.png";
 
-    zutat.placeholder = `Zutat ${ingredientCount}`;
+    zutat.className = "p-2 border rounded-lg flex-1";
 
-    zutat.className = "p-2 border rounded-lg flex-1";    alert("Bitte geben Sie einen Namen für das Rezept ein.");    ingredients: [],    tips: [],
-
-    zutat.oninput = updatePreview;
-
-        return;
+    zutat.oninput = updatePreview;    addIngredient();
 
     row.appendChild(menge);
 
-    row.appendChild(einheit);  }    steps: [],    imageData: document.getElementById("previewImage").src,
+    row.appendChild(einheit);    addStep();    }  const recipeId = Date.now().toString(); // Eindeutige ID für das Rezept
 
     row.appendChild(zutat);
 
-    div.appendChild(row);
+    div.appendChild(row);    
 
-    updatePreview();
+}
 
-}  const recipeId = Date.now().toString();    tips: [],    lastModified: new Date().toISOString()
-
-
-
-// Funktion zum Hinzufügen eines Schritts  const recipeData = {
+    // Vorschau aktualisieren  // Zutaten, Schritte und Tipps löschen
 
 function addStep() {
 
-    stepCount++;    id: recipeId,    imageData: document.getElementById("previewImage").src,  };
+    stepCount++;    updatePreview();
 
     const div = document.getElementById("steps");
 
-    const textarea = document.createElement("textarea");    name: recipeName,
+    const textarea = document.createElement("textarea");}  document.getElementById("ingredients").innerHTML = "";  const recipeData = {
 
     textarea.placeholder = `Schritt ${stepCount}`;
 
-    textarea.className = "w-full p-2 border rounded-lg mb-2";    difficulty: document.getElementById("difficulty").value,    lastModified: new Date().toISOString()
+    textarea.className = "w-full p-2 border rounded-lg mb-2";
 
     textarea.oninput = updatePreview;
 
-    div.appendChild(textarea);    prepTime: document.getElementById("prepTime").value,
+    div.appendChild(textarea);// Funktion zum Hinzufügen einer Zutat  document.getElementById("steps").innerHTML = "";
 
-    updatePreview();
+}
 
-}    cookTime: document.getElementById("cookTime").value,  };  // Collect ingredients
-
-
-
-// Funktion zum Hinzufügen eines Tipps    ingredients: [],
+function addIngredient() {
 
 function addTip() {
 
-    tipCount++;    steps: [],  document.querySelectorAll("#ingredients .flex").forEach(row => {
+    tipCount++;    ingredientCount++;  document.getElementById("tips").innerHTML = "";  const recipeId = Date.now().toString(); // Eindeutige ID für das Rezept    id: recipeId,
 
     const div = document.getElementById("tips");
 
-    const input = document.createElement("input");    tips: [],
+    const input = document.createElement("input");    const div = document.getElementById("ingredients");
 
     input.type = "text";
 
-    input.placeholder = `Tipp ${tipCount}`;    imageData: document.getElementById("previewImage").src,  // Zutaten sammeln    const menge = row.querySelector("input[type='number']").value;
+    input.placeholder = `Tipp ${tipCount}`;    const row = document.createElement("div");  
 
     input.className = "w-full p-2 border rounded-lg mb-2";
 
-    input.oninput = updatePreview;    lastModified: new Date().toISOString()
+    input.oninput = updatePreview;    row.className = "flex gap-2 mb-2";
 
     div.appendChild(input);
 
-    updatePreview();  };  document.querySelectorAll("#ingredients .flex").forEach(row => {    const einheit = row.querySelector("select").value;
-
-}
+}      // Zähler zurücksetzen  const recipeData = {    name: recipeName,
 
 
 
-// Funktion zum Speichern eines Rezepts
-
-function saveRecipe() {  // Zutaten sammeln    const menge = row.querySelector("input[type='number']").value;    const zutat = row.querySelector("input[type='text']").value;
+function saveRecipe() {    // Mengenangabe
 
     const recipeName = document.getElementById("recipeName").value;
 
-    if (!recipeName) {  document.querySelectorAll("#ingredients .flex").forEach(row => {
+    if (!recipeName) {    const menge = document.createElement("input");  ingredientCount = 0;
 
         alert("Bitte geben Sie einen Namen für das Rezept ein.");
 
-        return;    const menge = row.querySelector("input[type='number']").value;    const einheit = row.querySelector("select").value;    if (menge && zutat) {
+        return;    menge.type = "number";
 
     }
 
-    const einheit = row.querySelector("select").value;
+    menge.placeholder = "Menge";  stepCount = 0;    id: recipeId,    difficulty: document.getElementById("difficulty").value,
 
     const recipeData = {
 
-        id: Date.now().toString(),    const zutat = row.querySelector("input[type='text']").value;    const zutat = row.querySelector("input[type='text']").value;      recipeData.ingredients.push({ menge, einheit, zutat });
+        id: Date.now().toString(),    menge.className = "p-2 border rounded-lg";
 
         name: recipeName,
 
-        difficulty: document.getElementById("difficulty").value,    if (menge && zutat) {
+        difficulty: document.getElementById("difficulty").value,    menge.style.width = "95px";  tipCount = 0;
 
         prepTime: document.getElementById("prepTime").value,
 
-        cookTime: document.getElementById("cookTime").value,      recipeData.ingredients.push({ menge, einheit, zutat });    if (menge && zutat) {    }
+        cookTime: document.getElementById("cookTime").value,    menge.oninput = updatePreview;
 
         ingredients: [],
 
-        steps: [],    }
+        steps: [],          name: recipeName,    prepTime: document.getElementById("prepTime").value,
 
         tips: [],
 
-        imageData: document.getElementById("previewImage").src,  });      recipeData.ingredients.push({ menge, einheit, zutat });  });
+        imageData: document.getElementById("previewImage").src,    // Mengeneinheit
 
         lastModified: new Date().toISOString()
 
-    };
+    };    const einheit = document.createElement("select");  // Vorschau aktualisieren
 
 
 
-    // Zutaten sammeln  // Schritte sammeln    }
+    // Zutaten sammeln    einheit.className = "p-2 border rounded-lg w-24";
 
     document.querySelectorAll("#ingredients .flex").forEach(row => {
 
-        const menge = row.querySelector("input[type='number']").value;  document.querySelectorAll("#steps textarea").forEach(step => {
+        const menge = row.querySelector("input[type='number']").value;    ["EL","TL","Stück","L","ml","g","kg","Prise","Päckchen","Dose","Bund","Scheibe","Tasse"].forEach(e => {  updatePreview();    difficulty: document.getElementById("difficulty").value,    cookTime: document.getElementById("cookTime").value,
 
         const einheit = row.querySelector("select").value;
 
-        const zutat = row.querySelector("input[type='text']").value;    if (step.value.trim()) {  });  // Collect steps
+        const zutat = row.querySelector("input[type='text']").value;        const opt = document.createElement("option");
 
         if (menge && zutat) {
 
-            recipeData.ingredients.push({ menge, einheit, zutat });      recipeData.steps.push(step.value.trim());
+            recipeData.ingredients.push({ menge, einheit, zutat });        opt.value = e;}
 
         }
 
-    });    }  document.querySelectorAll("#steps textarea").forEach(step => {
+    });        opt.text = e;
 
 
 
-    // Schritte sammeln  });
+    // Schritte sammeln        einheit.appendChild(opt);    prepTime: document.getElementById("prepTime").value,    ingredients: [],
 
     document.querySelectorAll("#steps textarea").forEach(step => {
 
-        if (step.value.trim()) {  // Schritte sammeln    if (step.value.trim()) {
+        if (step.value.trim()) {    });
 
             recipeData.steps.push(step.value.trim());
 
-        }  // Tipps sammeln
+        }    einheit.onchange = updatePreview;function saveRecipe() {
 
     });
 
-  document.querySelectorAll("#tips input").forEach(tip => {  document.querySelectorAll("#steps textarea").forEach(step => {      recipeData.steps.push(step.value.trim());
+    
 
     // Tipps sammeln
 
-    document.querySelectorAll("#tips input").forEach(tip => {    if (tip.value.trim()) {
+    document.querySelectorAll("#tips input").forEach(tip => {    // Zutat  const recipeName = document.getElementById("recipeName").value;    cookTime: document.getElementById("cookTime").value,    steps: [],
 
         if (tip.value.trim()) {
 
-            recipeData.tips.push(tip.value.trim());      recipeData.tips.push(tip.value.trim());    if (step.value.trim()) {    }
+            recipeData.tips.push(tip.value.trim());    const zutat = document.createElement("input");
 
         }
 
-    });    }
+    });    zutat.type = "text";  if (!recipeName) {
 
 
 
-    try {  });      recipeData.steps.push(step.value.trim());  });
+    try {    zutat.placeholder = `Zutat ${ingredientCount}`;
 
         // Hole existierende Rezepte oder erstelle neue Liste
 
-        let recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
+        let recipes = JSON.parse(localStorage.getItem('recipes') || '[]');    zutat.className = "p-2 border rounded-lg flex-1";    alert("Bitte geben Sie einen Namen für das Rezept ein.");    ingredients: [],    tips: [],
 
         
 
-        // Prüfe ob das Rezept bereits existiert  try {    }
+        // Prüfe ob das Rezept bereits existiert    zutat.oninput = updatePreview;
 
         const existingIndex = recipes.findIndex(r => r.name === recipeName);
 
-        if (existingIndex >= 0) {    // Hole existierende Rezepte oder erstelle neue Liste
+        if (existingIndex >= 0) {        return;
 
             if (!confirm(`Ein Rezept mit dem Namen "${recipeName}" existiert bereits. Möchten Sie es überschreiben?`)) {
 
-                return;    let recipes = JSON.parse(localStorage.getItem('recipes') || '[]');  });  // Collect tips
+                return;    row.appendChild(menge);
 
             }
 
-            recipes[existingIndex] = recipeData;    
+            recipes[existingIndex] = recipeData;    row.appendChild(einheit);  }    steps: [],    imageData: document.getElementById("previewImage").src,
 
         } else {
 
-            recipes.push(recipeData);    // Prüfe ob das Rezept bereits existiert  document.querySelectorAll("#tips input").forEach(tip => {
+            recipes.push(recipeData);    row.appendChild(zutat);
 
         }
 
-            const existingIndex = recipes.findIndex(r => r.name === recipeName);
+            div.appendChild(row);
 
         // Speichere aktualisierte Rezeptliste
 
-        localStorage.setItem('recipes', JSON.stringify(recipes));    if (existingIndex >= 0) {  // Tipps sammeln    if (tip.value.trim()) {
+        localStorage.setItem('recipes', JSON.stringify(recipes));    updatePreview();
 
         alert("Rezept erfolgreich gespeichert!");
 
-        loadRecipeList();      if (!confirm(`Ein Rezept mit dem Namen "${recipeName}" existiert bereits. Möchten Sie es überschreiben?`)) {
+        loadRecipeList();}  const recipeId = Date.now().toString();    tips: [],    lastModified: new Date().toISOString()
 
     } catch (error) {
 
-        console.error('Fehler beim Speichern:', error);        return;  document.querySelectorAll("#tips input").forEach(tip => {      recipeData.tips.push(tip.value.trim());
+        console.error('Fehler beim Speichern:', error);
 
         alert("Fehler beim Speichern des Rezepts: " + error.message);
 
-    }      }
+    }// Funktion zum Hinzufügen eines Schritts  const recipeData = {
 
 }
 
-      recipes[existingIndex] = recipeData;    if (tip.value.trim()) {    }
+function addStep() {
 
-// Funktion zum Laden der Rezeptliste
+function loadRecipeList() {
 
-function loadRecipeList() {    } else {
+    try {    stepCount++;    id: recipeId,    imageData: document.getElementById("previewImage").src,  };
 
-    try {
+        const recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
 
-        const recipes = JSON.parse(localStorage.getItem('recipes') || '[]');      recipes.push(recipeData);      recipeData.tips.push(tip.value.trim());  });
+        const recipeList = document.getElementById("recipeList");    const div = document.getElementById("steps");
 
-        const recipeList = document.getElementById("recipeList");
+        recipeList.innerHTML = "";
 
-        recipeList.innerHTML = "";    }
+            const textarea = document.createElement("textarea");    name: recipeName,
+
+        if (recipes.length === 0) {
+
+            const emptyMessage = document.createElement("div");    textarea.placeholder = `Schritt ${stepCount}`;
+
+            emptyMessage.className = "text-gray-500 text-center p-4";
+
+            emptyMessage.textContent = "Keine Rezepte gespeichert";    textarea.className = "w-full p-2 border rounded-lg mb-2";    difficulty: document.getElementById("difficulty").value,    lastModified: new Date().toISOString()
+
+            recipeList.appendChild(emptyMessage);
+
+            return;    textarea.oninput = updatePreview;
+
+        }
+
+            div.appendChild(textarea);    prepTime: document.getElementById("prepTime").value,
+
+        recipes.sort((a, b) => a.name.localeCompare(b.name)).forEach(recipe => {
+
+            const recipeDiv = document.createElement("div");    updatePreview();
+
+            recipeDiv.className = "flex justify-between items-center p-2 bg-gray-50 rounded mb-2 hover:bg-gray-100";
+
+            }    cookTime: document.getElementById("cookTime").value,  };  // Collect ingredients
+
+            const nameSpan = document.createElement("span");
+
+            nameSpan.textContent = recipe.name;
+
+            nameSpan.className = "cursor-pointer hover:text-blue-600 flex-1";
+
+            nameSpan.onclick = () => loadRecipe(recipe.id);// Funktion zum Hinzufügen eines Tipps    ingredients: [],
+
+            
+
+            const deleteButton = document.createElement("button");function addTip() {
+
+            deleteButton.innerHTML = "🗑️";
+
+            deleteButton.className = "text-red-500 hover:text-red-700 ml-2";    tipCount++;    steps: [],  document.querySelectorAll("#ingredients .flex").forEach(row => {
+
+            deleteButton.onclick = (e) => {
+
+                e.stopPropagation();    const div = document.getElementById("tips");
+
+                deleteRecipe(recipe.id);
+
+            };    const input = document.createElement("input");    tips: [],
+
+            
+
+            recipeDiv.appendChild(nameSpan);    input.type = "text";
+
+            recipeDiv.appendChild(deleteButton);
+
+            recipeList.appendChild(recipeDiv);    input.placeholder = `Tipp ${tipCount}`;    imageData: document.getElementById("previewImage").src,  // Zutaten sammeln    const menge = row.querySelector("input[type='number']").value;
+
+        });
+
+    } catch (error) {    input.className = "w-full p-2 border rounded-lg mb-2";
+
+        console.error('Fehler beim Laden der Rezeptliste:', error);
+
+    }    input.oninput = updatePreview;    lastModified: new Date().toISOString()
+
+}
+
+    div.appendChild(input);
+
+function loadRecipe(recipeId) {
+
+    try {    updatePreview();  };  document.querySelectorAll("#ingredients .flex").forEach(row => {    const einheit = row.querySelector("select").value;
+
+        const recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
+
+        const recipeData = recipes.find(r => r.id === recipeId);}
 
         
 
-        if (recipes.length === 0) {        }
+        if (!recipeData) {
 
-            const emptyMessage = document.createElement("div");
+            throw new Error('Rezept nicht gefunden');
 
-            emptyMessage.className = "text-gray-500 text-center p-4";    // Speichere aktualisierte Rezeptliste
+        }// Funktion zum Speichern eines Rezepts
 
-            emptyMessage.textContent = "Keine Rezepte gespeichert";
+        
 
-            recipeList.appendChild(emptyMessage);    localStorage.setItem('recipes', JSON.stringify(recipes));  });  try {
+        // Grunddaten einfügenfunction saveRecipe() {  // Zutaten sammeln    const menge = row.querySelector("input[type='number']").value;    const zutat = row.querySelector("input[type='text']").value;
+
+        document.getElementById("recipeName").value = recipeData.name;
+
+        document.getElementById("difficulty").value = recipeData.difficulty;    const recipeName = document.getElementById("recipeName").value;
+
+        document.getElementById("prepTime").value = recipeData.prepTime;
+
+        document.getElementById("cookTime").value = recipeData.cookTime;    if (!recipeName) {  document.querySelectorAll("#ingredients .flex").forEach(row => {
+
+        document.getElementById("previewImage").src = recipeData.imageData;
+
+        alert("Bitte geben Sie einen Namen für das Rezept ein.");
+
+        // Zutaten, Schritte und Tipps löschen
+
+        document.getElementById("ingredients").innerHTML = "";        return;    const menge = row.querySelector("input[type='number']").value;    const einheit = row.querySelector("select").value;    if (menge && zutat) {
+
+        document.getElementById("steps").innerHTML = "";
+
+        document.getElementById("tips").innerHTML = "";    }
+
+        
+
+        // Zähler zurücksetzen    const einheit = row.querySelector("select").value;
+
+        ingredientCount = 0;
+
+        stepCount = 0;    const recipeData = {
+
+        tipCount = 0;
+
+                id: Date.now().toString(),    const zutat = row.querySelector("input[type='text']").value;    const zutat = row.querySelector("input[type='text']").value;      recipeData.ingredients.push({ menge, einheit, zutat });
+
+        // Zutaten hinzufügen
+
+        recipeData.ingredients.forEach(ing => {        name: recipeName,
+
+            addIngredient();
+
+            const lastRow = document.querySelector("#ingredients .flex:last-child");        difficulty: document.getElementById("difficulty").value,    if (menge && zutat) {
+
+            lastRow.querySelector("input[type='number']").value = ing.menge;
+
+            lastRow.querySelector("select").value = ing.einheit;        prepTime: document.getElementById("prepTime").value,
+
+            lastRow.querySelector("input[type='text']").value = ing.zutat;
+
+        });        cookTime: document.getElementById("cookTime").value,      recipeData.ingredients.push({ menge, einheit, zutat });    if (menge && zutat) {    }
+
+
+
+        // Schritte hinzufügen        ingredients: [],
+
+        recipeData.steps.forEach(step => {
+
+            addStep();        steps: [],    }
+
+            const lastStep = document.querySelector("#steps textarea:last-child");
+
+            lastStep.value = step;        tips: [],
+
+        });
+
+        imageData: document.getElementById("previewImage").src,  });      recipeData.ingredients.push({ menge, einheit, zutat });  });
+
+        // Tipps hinzufügen
+
+        recipeData.tips.forEach(tip => {        lastModified: new Date().toISOString()
+
+            addTip();
+
+            const lastTip = document.querySelector("#tips input:last-child");    };
+
+            lastTip.value = tip;
+
+        });
+
+
+
+        updatePreview();    // Zutaten sammeln  // Schritte sammeln    }
+
+    } catch (error) {
+
+        console.error('Fehler beim Laden des Rezepts:', error);    document.querySelectorAll("#ingredients .flex").forEach(row => {
+
+        alert("Fehler beim Laden des Rezepts: " + error.message);
+
+    }        const menge = row.querySelector("input[type='number']").value;  document.querySelectorAll("#steps textarea").forEach(step => {
+
+}
+
+        const einheit = row.querySelector("select").value;
+
+function deleteRecipe(recipeId) {
+
+    try {        const zutat = row.querySelector("input[type='text']").value;    if (step.value.trim()) {  });  // Collect steps
+
+        const recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
+
+        const recipe = recipes.find(r => r.id === recipeId);        if (menge && zutat) {
+
+        
+
+        if (!recipe) {            recipeData.ingredients.push({ menge, einheit, zutat });      recipeData.steps.push(step.value.trim());
+
+            throw new Error('Rezept nicht gefunden');
+
+        }        }
+
+
+
+        if (!confirm(`Möchten Sie das Rezept "${recipe.name}" wirklich löschen?`)) {    });    }  document.querySelectorAll("#steps textarea").forEach(step => {
 
             return;
 
-        }    alert("Rezept erfolgreich gespeichert!");
+        }
+
+
+
+        const updatedRecipes = recipes.filter(r => r.id !== recipeId);    // Schritte sammeln  });
+
+        localStorage.setItem('recipes', JSON.stringify(updatedRecipes));
+
+        loadRecipeList();    document.querySelectorAll("#steps textarea").forEach(step => {
+
+    } catch (error) {
+
+        console.error('Fehler beim Löschen:', error);        if (step.value.trim()) {  // Schritte sammeln    if (step.value.trim()) {
+
+        alert("Fehler beim Löschen des Rezepts: " + error.message);
+
+    }            recipeData.steps.push(step.value.trim());
+
+}
+
+        }  // Tipps sammeln
+
+// Funktion zum Aktualisieren der Vorschau
+
+function updatePreview() {    });
+
+    document.getElementById("previewName").innerText = document.getElementById("recipeName").value || "Rezeptname";
+
+  document.querySelectorAll("#tips input").forEach(tip => {  document.querySelectorAll("#steps textarea").forEach(step => {      recipeData.steps.push(step.value.trim());
+
+    const difficulty = document.getElementById("difficulty").value;
+
+    const stars = "★★★★★☆☆☆☆☆".slice(5 - difficulty, 10 - difficulty);    // Tipps sammeln
+
+    const prep = parseInt(document.getElementById("prepTime").value) || 0;
+
+    const cook = parseInt(document.getElementById("cookTime").value) || 0;    document.querySelectorAll("#tips input").forEach(tip => {    if (tip.value.trim()) {
+
+    const total = prep + cook;
+
+    document.getElementById("previewMeta").innerText =        if (tip.value.trim()) {
+
+        `Schwierigkeit: ${stars} | Gesamtzeit: ${total} Min. (${prep} Min. Vorbereitung, ${cook} Min. Kochen)`;
+
+            recipeData.tips.push(tip.value.trim());      recipeData.tips.push(tip.value.trim());    if (step.value.trim()) {    }
+
+    const ingList = document.getElementById("previewIngredients");
+
+    ingList.innerHTML = "";        }
+
+    // Zutaten als Tabelle darstellen
+
+    const rows = document.getElementById("ingredients").getElementsByClassName("flex");    });    }
+
+    if (rows.length > 0) {
+
+        const table = document.createElement("table");
+
+        table.style.width = "100%";
+
+        table.style.borderCollapse = "collapse";    try {  });      recipeData.steps.push(step.value.trim());  });
+
+        table.innerHTML = `<colgroup>
+
+            <col style='width:15%'>        // Hole existierende Rezepte oder erstelle neue Liste
+
+            <col style='width:20%'>
+
+            <col style='width:65%'>        let recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
+
+        </colgroup>
+
+        <thead><tr>        
+
+            <th style='text-align:left; padding:4px; border-bottom:1px solid #ccc;'>Menge</th>
+
+            <th style='text-align:left; padding:4px; border-bottom:1px solid #ccc;'>Einheit</th>        // Prüfe ob das Rezept bereits existiert  try {    }
+
+            <th style='text-align:left; padding:4px; border-bottom:1px solid #ccc;'>Zutat</th>
+
+        </tr></thead><tbody></tbody>`;        const existingIndex = recipes.findIndex(r => r.name === recipeName);
+
+        const tbody = table.querySelector("tbody");
+
+        for (let row of rows) {        if (existingIndex >= 0) {    // Hole existierende Rezepte oder erstelle neue Liste
+
+            const menge = row.querySelector("input[type='number']")?.value;
+
+            const einheit = row.querySelector("select")?.value;            if (!confirm(`Ein Rezept mit dem Namen "${recipeName}" existiert bereits. Möchten Sie es überschreiben?`)) {
+
+            const zutat = row.querySelector("input[type='text']")?.value;
+
+            if (menge && zutat) {                return;    let recipes = JSON.parse(localStorage.getItem('recipes') || '[]');  });  // Collect tips
+
+                const tr = document.createElement("tr");
+
+                tr.innerHTML = `<td style='padding:4px;'>${menge}</td><td style='padding:4px;'>${einheit}</td><td style='padding:4px;'>${zutat}</td>`;            }
+
+                tbody.appendChild(tr);
+
+            }            recipes[existingIndex] = recipeData;    
+
+        }
+
+        ingList.appendChild(table);        } else {
+
+    }
+
+            recipes.push(recipeData);    // Prüfe ob das Rezept bereits existiert  document.querySelectorAll("#tips input").forEach(tip => {
+
+    const stepList = document.getElementById("previewSteps");
+
+    stepList.innerHTML = "";        }
+
+    document.querySelectorAll("#steps textarea").forEach(input => {
+
+        if (input.value.trim()) {            const existingIndex = recipes.findIndex(r => r.name === recipeName);
+
+            const li = document.createElement("li");
+
+            li.innerText = input.value;        // Speichere aktualisierte Rezeptliste
+
+            stepList.appendChild(li);
+
+        }        localStorage.setItem('recipes', JSON.stringify(recipes));    if (existingIndex >= 0) {  // Tipps sammeln    if (tip.value.trim()) {
+
+    });
+
+        alert("Rezept erfolgreich gespeichert!");
+
+    const tipList = document.getElementById("previewTips");
+
+    tipList.innerHTML = "";        loadRecipeList();      if (!confirm(`Ein Rezept mit dem Namen "${recipeName}" existiert bereits. Möchten Sie es überschreiben?`)) {
+
+    document.querySelectorAll("#tips input").forEach(input => {
+
+        if (input.value.trim()) {    } catch (error) {
+
+            const li = document.createElement("li");
+
+            li.innerText = input.value;        console.error('Fehler beim Speichern:', error);        return;  document.querySelectorAll("#tips input").forEach(tip => {      recipeData.tips.push(tip.value.trim());
+
+            tipList.appendChild(li);
+
+        }        alert("Fehler beim Speichern des Rezepts: " + error.message);
+
+    });
+
+}    }      }
+
+
+
+// Bildupload-Handler}
+
+document.getElementById("imageUpload").addEventListener("change", function(evt) {
+
+    const file = evt.target.files[0];      recipes[existingIndex] = recipeData;    if (tip.value.trim()) {    }
+
+    if (file) {
+
+        const reader = new FileReader();// Funktion zum Laden der Rezeptliste
+
+        reader.onload = e => {
+
+            document.getElementById("previewImage").src = e.target.result;function loadRecipeList() {    } else {
+
+            updatePreview();
+
+        };    try {
+
+        reader.readAsDataURL(file);
+
+    }        const recipes = JSON.parse(localStorage.getItem('recipes') || '[]');      recipes.push(recipeData);      recipeData.tips.push(tip.value.trim());  });
+
+});
+
+        const recipeList = document.getElementById("recipeList");
+
+// Export als Bild
+
+function exportImage() {        recipeList.innerHTML = "";    }
+
+    const element = document.getElementById("preview");
+
+    if (window.domtoimage && typeof window.domtoimage.toPng === 'function') {        
+
+        window.domtoimage.toPng(element, { bgcolor: '#fff' })
+
+            .then(function (dataUrl) {        if (recipes.length === 0) {        }
+
+                const link = document.createElement('a');
+
+                link.download = `${document.getElementById("recipeName").value || "Rezept"}.png`;            const emptyMessage = document.createElement("div");
+
+                link.href = dataUrl;
+
+                link.click();            emptyMessage.className = "text-gray-500 text-center p-4";    // Speichere aktualisierte Rezeptliste
+
+            })
+
+            .catch(function (error) {            emptyMessage.textContent = "Keine Rezepte gespeichert";
+
+                alert('Bild-Export fehlgeschlagen: ' + (error && error.message ? error.message : error));
+
+                console.error('Bild-Export Fehler:', error);            recipeList.appendChild(emptyMessage);    localStorage.setItem('recipes', JSON.stringify(recipes));  });  try {
+
+            });
+
+    } else {            return;
+
+        alert('Bild-Export nicht möglich: dom-to-image Bibliothek wurde nicht geladen.');
+
+    }        }    alert("Rezept erfolgreich gespeichert!");
+
+}
 
         
 
-        recipes.sort((a, b) => a.name.localeCompare(b.name)).forEach(recipe => {    loadRecipeList();    // Hole existierende Rezepte oder erstelle neue Liste
+// Initialisierung beim Laden der Seite
 
-            const recipeDiv = document.createElement("div");
+document.addEventListener('DOMContentLoaded', () => {        recipes.sort((a, b) => a.name.localeCompare(b.name)).forEach(recipe => {    loadRecipeList();    // Hole existierende Rezepte oder erstelle neue Liste
 
-            recipeDiv.className = "flex justify-between items-center p-2 bg-gray-50 rounded mb-2 hover:bg-gray-100";  } catch (error) {
+    loadRecipeList();
 
-            
+    // Füge einen ersten Zutateneintrag hinzu            const recipeDiv = document.createElement("div");
+
+    addIngredient();
+
+    // Füge einen ersten Schritt hinzu            recipeDiv.className = "flex justify-between items-center p-2 bg-gray-50 rounded mb-2 hover:bg-gray-100";  } catch (error) {
+
+    addStep();
+
+});            
 
             const nameSpan = document.createElement("span");    console.error('Fehler beim Speichern:', error);  try {    let recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
 
