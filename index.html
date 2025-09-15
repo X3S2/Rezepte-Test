@@ -13,17 +13,19 @@
   <div class="flex">
     <!-- Left Sidebar -->
     <div class="w-64 bg-white shadow-lg h-screen fixed left-0 p-4">
-      <h2 class="text-xl font-bold mb-4">Rezepte</h2>
+      <h2 class="text-xl font-bold mb-4">🍴 Rezepte</h2>
       <div class="space-y-2">
+        <button onclick="newRecipe()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg w-full mb-2">📝 Neues Rezept</button>
         <button onclick="saveRecipe()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg w-full">💾 Rezept speichern</button>
-        <div id="recipeList" class="mt-4 space-y-2">
+        <div class="mt-4 mb-2 font-semibold">Gespeicherte Rezepte:</div>
+        <div id="recipeList" class="mt-2 space-y-2 max-h-[calc(100vh-220px)] overflow-y-auto">
           <!-- Recipe list will be populated here -->
         </div>
       </div>
     </div>
     <!-- Main Content -->
-    <div class="ml-64">
-      <div class="container p-6 max-w-4xl">
+    <div class="ml-64 flex-1">
+      <div class="container mx-auto p-6" style="max-width: 64rem;">
     <h1 class="text-4xl font-bold text-center mb-6">🍴 Rezeptgenerator</h1>
 
     <!-- Formular -->
