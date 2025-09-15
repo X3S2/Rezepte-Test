@@ -10,7 +10,20 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100 text-gray-800">
-  <div class="container mx-auto p-6 max-w-4xl">
+  <div class="flex">
+    <!-- Left Sidebar -->
+    <div class="w-64 bg-white shadow-lg h-screen fixed left-0 p-4">
+      <h2 class="text-xl font-bold mb-4">Rezepte</h2>
+      <div class="space-y-2">
+        <button onclick="saveRecipe()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg w-full">💾 Rezept speichern</button>
+        <div id="recipeList" class="mt-4 space-y-2">
+          <!-- Recipe list will be populated here -->
+        </div>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="ml-64">
+      <div class="container p-6 max-w-4xl">
     <h1 class="text-4xl font-bold text-center mb-6">🍴 Rezeptgenerator</h1>
 
     <!-- Formular -->
@@ -79,6 +92,7 @@
       <ol id="previewSteps" class="list-decimal pl-6 mb-4"></ol>
       <h3 class="text-xl font-semibold">💡 Tipps</h3>
       <ul id="previewTips" class="list-disc pl-6"></ul>
+      </div>
     </div>
   </div>
 

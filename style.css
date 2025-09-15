@@ -7,3 +7,8 @@ button {
 button:hover {
   transform: scale(1.03);
 }
+
+/* Hide PDF export button */
+button[onclick="generatePDF()"] {
+  display: none;
+}
